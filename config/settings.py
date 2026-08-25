@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     # Local apps
     'accounts',
+    'announcements',
     'courses',
     'attendance',
     'assignments',
