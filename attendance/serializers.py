@@ -4,7 +4,7 @@ from .models import AttendanceSession, AttendanceRecord, AttendanceSummary
 
 class AttendanceSessionSerializer(serializers.ModelSerializer):
     course_code = serializers.CharField(source='course.code', read_only=True)
-    course_name = serializers.CharField(source='course.name', read_only=True)
+    course_name = serializers.CharField(source='course.title', read_only=True)
     created_by_name = serializers.CharField(source='created_by.get_full_name', read_only=True)
     total_expected = serializers.ReadOnlyField()
     total_present = serializers.ReadOnlyField()
@@ -61,7 +61,7 @@ class AttendanceSummarySerializer(serializers.ModelSerializer):
     student_name = serializers.CharField(source='student.profile.full_name', read_only=True)
     student_id = serializers.CharField(source='student.student_id', read_only=True)
     course_code = serializers.CharField(source='course.code', read_only=True)
-    course_name = serializers.CharField(source='course.name', read_only=True)
+    course_name = serializers.CharField(source='course.title', read_only=True)
 
     class Meta:
         model = AttendanceSummary

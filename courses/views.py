@@ -253,6 +253,9 @@ class EnrollmentViewSet(viewsets.ModelViewSet):
     * `complete/` – POST to mark enrollment as completed (instructor/admin)
     """
 
+    queryset = Enrollment.objects.select_related(
+        "course", "student", "student__profile", "student__profile__user"
+    ).all()
     serializer_class = EnrollmentSerializer
     permission_classes = [IsAuthenticated]
     filterset_fields = ["status", "course"]

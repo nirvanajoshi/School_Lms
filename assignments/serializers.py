@@ -3,7 +3,7 @@ from .models import Assignment, Submission, SubmissionAttachment, Grade
 
 
 class AssignmentSerializer(serializers.ModelSerializer):
-    course_name = serializers.CharField(source='course.name', read_only=True)
+    course_name = serializers.CharField(source='course.title', read_only=True)
     created_by_name = serializers.CharField(source='created_by.get_full_name', read_only=True)
     is_overdue = serializers.ReadOnlyField()
     submission_count = serializers.SerializerMethodField()

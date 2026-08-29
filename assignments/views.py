@@ -228,6 +228,9 @@ class SubmissionViewSet(viewsets.ModelViewSet):
     * **`/grade/`** action for instructors to grade a submission.
     """
 
+    queryset = Submission.objects.select_related(
+        "assignment", "student", "student__profile", "student__profile__user"
+    ).prefetch_related("attachments", "grade").all()
     serializer_class = SubmissionSerializer
     permission_classes = [IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]

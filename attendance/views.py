@@ -291,6 +291,11 @@ class AttendanceRecordViewSet(viewsets.ModelViewSet):
     * Only instructors/admins can create/update records.
     """
 
+    queryset = AttendanceRecord.objects.select_related(
+        "session", "session__course",
+        "student", "student__profile", "student__profile__user",
+        "recorded_by",
+    ).all()
     serializer_class = AttendanceRecordSerializer
     permission_classes = [IsAuthenticated]
     filterset_fields = ["session", "status"]
