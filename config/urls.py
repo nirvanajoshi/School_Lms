@@ -18,9 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from core import views as core_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # API root & dashboard
+    path('api/', core_views.api_root, name='api-root'),
+    path('api/dashboard/', core_views.dashboard, name='dashboard'),
+    # App endpoints
     path('accounts/', include('accounts.urls')),
     path('announcements/', include('announcements.urls')),
     path('assignments/', include('assignments.urls')),
